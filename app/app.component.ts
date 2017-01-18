@@ -1,70 +1,57 @@
 import { Component } from '@angular/core';
+import { Keg } from './keg.model';
 
 @Component({
   selector: 'app-root',
   template: `
   <h1>KegStand</h1>
-  <ul>
-    <h3 *ngFor="let newKeg of kegs">{{newKeg.name}} from: {{newKeg.brand}} ABV%: {{newKeg.alccont}} Price: {{newKeg.price}} dollars.<button (click)="editKeg(newKeg)">Edit Keg</button></h3>
-  </ul>
+  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
   <hr>
-  <div *ngIf="selectedKeg">
-    <h4>Edit Keg</h4>
-    <label>Beer Name:</label>
-    <input [(ngModel)]="selectedKeg.name">
-    <label>Brewery:</label>
-    <input [(ngModel)]="selectedKeg.brand">
-    <label>ABV:</label>
-    <input [(ngModel)]="selectedKeg.alccont">
-    <label>Price:</label>
-    <input [(ngModel)]="selectedKeg.price">
-    <button (click)="editDone()">Done</button>
-  </div>
+  <keg-edit [childSelectedKeg]="selectedKeg"></keg-edit>
   <button (click)="newKeg()" >Add a New Keg</button>
   <div *ngIf="newKegFormShow">
+  <form (ngSubmit) ="onSubmit()" #kegForm="ngForm">
     <h3>Add A New Keg</h3>
-    <label>Beer Name:</label>
-    <input type="text" name="beer-name">
-    <label>Brewery:</label>
+    <label for="beername">Beer Name:</label>
+    <input type="text" name="beername">
+    <label for="brewery">Brewery:</label>
     <input name="brewery">
-    <label>Price:</label>
+    <label for="price">Price:</label>
     <input name="price">
-    <label>ABV:</label>
+    <label for="alccont">ABV:</label>
     <input name="alccont">
     <button (click)="addKeg(beername, brewery, price, alccont)">Add Keg!</button>
+    </form>
   </div>
   `
 })
 export class AppComponent {
-  kegs: Keg[] = [
+
+  masterKegList: Keg[] = [
     new Keg("Lil Suptim'", "Lagunitas", 6, 5.5),
     new Keg("90 Schillings", "Odell", 5.50, 6.0)
   ];
 
-  newKegFormShow = null;
   selectedKeg = null;
-  newKeg()
-  {
-    this.newKegFormShow = true;
-  }
-  addKeg(beername: string, brewery: string, price: number, alccont: number)
-  {
-    //kegToAdd: Keg = new Keg(beername, brewery, price, alccont);
-    this.kegs.push(new Keg(beername, brewery, price, alccont));
-  }
+
   editKeg(clickedKeg)
   {
-    this.selectedKeg = clickedKeg;
+    this.childSelectedKeg = clickedKeg;
   }
   editDone()
   {
-    this.selectedKeg = null;
+    this.childSelectedKeg = null;
   }
-}
-export class Keg
-{
-  constructor(public name: string, public brand: string, public price: number, public alccont: number)
-  {
 
-  }
+  // newKegFormShow = null;
+  // newKeg()
+  // {
+  //   this.newKegFormShow = true;
+  // }
+  // addKeg(beername: string, brewery: string, price: number, alccont: number)
+  // {
+  //   //kegToAdd: Keg = new Keg(beername, brewery, price, alccont);
+  //   this.kegs.push(new Keg(beername, brewery, price, alccont));
+  // }
+
 }
