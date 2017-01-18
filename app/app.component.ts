@@ -36,11 +36,11 @@ export class AppComponent {
 
   editKeg(clickedKeg)
   {
-    this.childSelectedKeg = clickedKeg;
+    this.selectedKeg = clickedKeg;
   }
   editDone()
   {
-    this.childSelectedKeg = null;
+    this.selectedKeg = null;
   }
 
   // newKegFormShow = null;
