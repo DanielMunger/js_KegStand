@@ -15,13 +15,18 @@ import { Keg } from './keg.model';
     <input [(ngModel)]="childSelectedKeg.alccont">
     <label>Price:</label>
     <input [(ngModel)]="childSelectedKeg.price">
-    <button (click)="editDone()">Done</button>
+    <button (click)="doneButtonClicked()">Done</button>
   </div>
   `
 })
 
 export class KegEditComponent
 {
-
+  @Output() doneClickedSender = new EventEmitter;
   @Input() childSelectedKeg: Keg;
+
+  doneButtonClicked()
+  {
+    this.doneClickedSender.emit();
+  }
 }

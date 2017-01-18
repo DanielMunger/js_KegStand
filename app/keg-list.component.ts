@@ -6,7 +6,8 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <ul>
-    <h3 *ngFor="let newKeg of childKegList">{{newKeg.name}} from: {{newKeg.brand}} ABV%: {{newKeg.alccont}} Price: {{newKeg.price}} dollars.<button (click)="editButtonHasBeenClicked(newKeg)">Edit Keg</button></h3>
+    <h3 *ngFor="let newKeg of childKegList">{{newKeg.name}}// {{newKeg.brand}}//ABV: {{newKeg.alccont}}%//$ {{newKeg.price}}//Pints Left: {{newKeg.pints}}
+    <button (click)="editButtonHasBeenClicked(newKeg)">Edit Keg</button><button (click)="pintSold(newKeg)">Pint Sold</button></h3>
   </ul>
   `
 })
@@ -18,5 +19,9 @@ export class KegListComponent
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
+  }
+  pintSold(kegToDecreasePints)
+  {
+    kegToDecreasePints.pints = kegToDecreasePints.pints -1;
   }
 }
