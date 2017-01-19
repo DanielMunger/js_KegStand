@@ -1,0 +1,51 @@
+.btn {
+  width: 35%;
+  border-radius: 20px;
+  font-size: 75%;
+  margin: 0;
+  padding: 0;
+}
+.btn:first-of-type {
+  margin-right: 5%;
+}
+
+.items {
+  font-size: 105%;
+  letter-spacing: 2.5px;
+}
+.ng-valid {
+  margin: 20px;
+  margin-right: 50%;
+}
+
+.kegs {
+  margin-top: 5%;
+}
+
+.row {
+  height: 20%;
+}
+
+img {
+  height: 100%;
+}
+
+.refill-red {
+  background-color: red;
+  width: 53.5px;
+  height: 76px;
+  border-radius: 20px;
+}
+.refill-yellow {
+  background-color: yellow;
+  width: 53.5px;
+  height: 76px;
+  border-radius: 20px;
+}
+
+.refill-green {
+  background-color: green;
+  width: 53.5px;
+  height: 76px;
+  border-radius: 18px;
+}

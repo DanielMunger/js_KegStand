@@ -4,19 +4,31 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'app-root',
   template: `
-  <h1>KegStand</h1>
-  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
-  <hr>
-  <keg-edit [childSelectedKeg]="selectedKeg" (doneClickedSender)="editDone()"></keg-edit>
-
-  <new-keg (newKegSender)="newKeg($event)"></new-keg>
+  <nav>
+   <div class="nav-wrapper">
+     <a href="#" class="brand-logo">KegStand</a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="sass.html">Link1</a></li>
+       <li><a href="badges.html">Link2</a></li>
+       <li><a href="collapsible.html">LInk3</a></li>
+     </ul>
+   </div>
+ </nav>
+  <div class="container">
+    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
+    <hr>
+    <keg-edit [childSelectedKeg]="selectedKeg" (doneClickedSender)="editDone()"></keg-edit>
+    <hr><br>
+    <new-keg class="newkeg" (newKegSender)="newKeg($event)"></new-keg>
+  </div>
   `
 })
 
 export class AppComponent {
   masterKegList: Keg[] = [
     new Keg("Lil Suptim'", "Lagunitas", 6, 5.5),
-    new Keg("90 Schillings", "Odell", 5.50, 6.0)
+    new Keg("90 Schillings", "Odell", 5.50, 6.0),
+    new Keg("ABC Blonde", "ABC", 7.50, 7.0)
   ];
   selectedKeg = null;
   editKeg(clickedKeg)
