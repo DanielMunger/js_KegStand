@@ -11,6 +11,8 @@ import { Keg } from './keg.model';
     <input [(ngModel)]="childSelectedKeg.name">
     <label>Brewery:</label>
     <input [(ngModel)]="childSelectedKeg.brand">
+    <label>Flavor:</label>
+    <input [(ngModel)]="childSelectedKeg.flavor">
     <label>ABV:</label>
     <input [(ngModel)]="childSelectedKeg.alccont">
     <label>Price:</label>

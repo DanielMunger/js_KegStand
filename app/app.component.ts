@@ -4,6 +4,7 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'app-root',
   template: `
+
   <nav>
    <div class="nav-wrapper">
      <a href="#" class="brand-logo">KegStand</a>
@@ -28,9 +29,9 @@ import { Keg } from './keg.model';
 
 export class AppComponent {
   masterKegList: Keg[] = [
-    new Keg("Lil Suptim'", "Lagunitas", 3, 5.5),
-    new Keg("90 Schillings", "Odell", 5.50, 6.0),
-    new Keg("ABC Blonde", "ABC", 7.50, 7.0)
+    new Keg("Lil Suptim'", "Lagunitas", 3, 5.5, "IPA"),
+    new Keg("90 Schillings", "Odell", 5.50, 6.0, "Ale"),
+    new Keg("ABC Blonde", "ABC", 7.50, 7.0, "Blonde")
   ];
   selectedKeg = null;
   editKeg(clickedKeg)

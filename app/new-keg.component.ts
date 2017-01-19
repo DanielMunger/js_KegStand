@@ -8,14 +8,16 @@ import { Keg } from './keg.model';
   <form>
     <h3>Add A New Keg</h3>
     <label for="beername">Beer Name:</label>
-    <input #newBeerName>
+    <input type="text" required #newBeerName>
     <label for="brewery">Brewery:</label>
-    <input #newBrewery>
+    <input type="text" required #newBrewery>
+    <label for="flavor">Flavor:</label>
+    <input type="text" required #newFlavor>
     <label for="price">Price:</label>
-    <input #newPrice>
+    <input type="number" required #newPrice>
     <label for="alccont">ABV:</label>
-    <input #newABV>
-    <button type="button" (click)="submitForm(newBeerName.value, newBrewery.value, newPrice.value, newABV.value); kegFormShow()">Add Keg!</button>
+    <input type="number" required #newABV>
+    <button type="button" (click)="submitForm(newBeerName.value, newBrewery.value, newPrice.value, newABV.value, newFlavor.value); kegFormShow()">Add Keg!</button>
   </form>
   `
 
@@ -26,9 +28,9 @@ export class NewKegComponent
 {
   @Output() newKegSender = new EventEmitter();
   @Output() showKegSender = new EventEmitter();
-  submitForm(beerName: string, brewery: string, price: number, alccont: number)
+  submitForm(beerName: string, brewery: string, price: number, alccont: number, flavor: string)
   {
-    var newKeg: Keg = new Keg(beerName, brewery, price, alccont);
+    var newKeg: Keg = new Keg(beerName, brewery, price, alccont, flavor);
     this.newKegSender.emit(newKeg);
   }
   showKegBool: boolean = true;

@@ -6,8 +6,16 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <div class="kegs">
-    <div class="row" *ngFor="let newKeg of childKegList">
-      <div class="col m6 items"><span [class]="kegPrice(newKeg)">{{newKeg.name}}</span>~{{newKeg.brand}} <br> ABV: {{newKeg.alccont}}%~$ {{newKeg.price}}<br>
+      <select class="dropDown" (change)="onChange($event.target.value)" >
+        <option value="all" selected="selected">All beers</option>
+        <option value="IPA">IPA</option>
+        <option value="Blonde">Blonde</option>
+        <option value="Porter">Porter</option>
+        <option value="Stout">Stout</option>
+        <option value="Ale">Ale</option>
+      </select>
+    <div class="row" *ngFor="let newKeg of childKegList | kegflavor:filterByFlavor">
+      <div class="col m6 items"><span [class]="kegPrice(newKeg)">{{newKeg.name}}</span>~{{newKeg.brand}}~{{newKeg.flavor}} <br> ABV: {{newKeg.alccont}}%~$ {{newKeg.price}}<br>
       Pints Left: {{newKeg.pints}}
       </div>
       <div class="col m4">
@@ -18,7 +26,9 @@ import { Keg } from './keg.model';
       </div>
     </div>
   </div>
+
   `
+
 })
 
 export class KegListComponent
@@ -32,6 +42,11 @@ export class KegListComponent
   pintSold(kegToDecreasePints)
   {
     kegToDecreasePints.pints = kegToDecreasePints.pints -1;
+  }
+  filterByFlavor= "all";
+  
+  onChange(optionFromMenu) {
+    this.filterByFlavor = optionFromMenu;
   }
 
   fillLevel= null;
@@ -60,6 +75,3 @@ export class KegListComponent
   }
 
 }
-
-
-// <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>      //  <img src="./resources/images/keg.png" alt="beer glass" />
