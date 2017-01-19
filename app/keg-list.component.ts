@@ -7,7 +7,7 @@ import { Keg } from './keg.model';
   template: `
   <div class="kegs">
     <div class="row" *ngFor="let newKeg of childKegList">
-      <div class="col m6 items">{{newKeg.name}}~{{newKeg.brand}} <br> ABV: {{newKeg.alccont}}%~$ {{newKeg.price}}<br>
+      <div class="col m6 items"><span [class]="kegPrice(newKeg)">{{newKeg.name}}</span>~{{newKeg.brand}} <br> ABV: {{newKeg.alccont}}%~$ {{newKeg.price}}<br>
       Pints Left: {{newKeg.pints}}
       </div>
       <div class="col m4">
@@ -48,7 +48,16 @@ export class KegListComponent
       return 'refill-red';
     }
   }
-
+  kegPrice(currentKeg)
+  {
+    if(currentKeg.price>=5)
+    {
+      return 'price-pink';
+    }else if(currentKeg.price<5)
+    {
+      return 'price-green';
+    }
+  }
 
 }
 
