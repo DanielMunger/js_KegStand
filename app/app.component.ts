@@ -19,7 +19,9 @@ import { Keg } from './keg.model';
     <hr>
     <keg-edit [childSelectedKeg]="selectedKeg" (doneClickedSender)="editDone()"></keg-edit>
     <hr><br>
-    <new-keg class="newkeg" (newKegSender)="newKeg($event)"></new-keg>
+    <button (click)="kegFormShow()">Add A New Keg</button>
+    <new-keg *ngIf="showKeg" class="newkeg" (newKegSender)="newKeg($event)" (showKegSender)="kegFormHide($event)"></new-keg>
+    <empty-keg [childKegList]="masterKegList">hello</empty-keg>
   </div>
   `
 })
@@ -42,5 +44,14 @@ export class AppComponent {
   newKeg(newKegFromChild: Keg)
   {
     this.masterKegList.push(newKegFromChild);
+  }
+  showKeg: boolean = false;
+  kegFormShow()
+  {
+    this.showKeg = true;
+  }
+  kegFormHide(kegBool: boolean)
+  {
+    this.showKeg = kegBool;
   }
 }
